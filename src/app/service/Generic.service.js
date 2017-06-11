@@ -18,25 +18,25 @@ var GenericService = (function () {
         this.protocolo = 'http://';
         this.servidor = 'localhost';
         this.puerto = '8181';
-        this.contextApp = '/softventory-ws';
-        this.tipoServicio = '/rest';
+        this.contextApp = '/pruebatecnica-ws';
+        this.tipoServicio = '/rest/api';
         this.url = this.protocolo + this.servidor + ":" + this.puerto + this.contextApp + this.tipoServicio;
     }
     /**
-     * Lista todos los proveedores registrados en la base de datos.
-     * @returns arreglo de proveedores registrados en base de datos.
+     * Lista todas las entidades del dominio registrados en la base de datos.
+     * @returns arreglo de objetos del dominio registrados en base de datos.
      */
     GenericService.prototype.listAll = function (nameDomain) {
-        var urlListar = this.url + "/" + nameDomain + "/listar-" + nameDomain + "/";
+        var urlListar = this.url + "/" + nameDomain + "/list";
         return this.http.get(urlListar)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     /**
-     * Crea un nuevo proveedor.
-     * @param proveedor proveedor a crear.
-     * @returns el proveedor creado, con el id correspondiente.
+     * Crea una nueva antidad del dominio.
+     * @param proveedor entidad del dominio a crear.
+     * @returns la entidad del dominio creada, con el id correspondiente.
      */
     GenericService.prototype.create = function (domain, nameDomain) {
         var urlCreate = this.url + "/" + nameDomain + "/registrar-" + nameDomain;

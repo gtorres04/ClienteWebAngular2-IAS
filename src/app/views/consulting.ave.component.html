@@ -1,27 +1,5 @@
-<h1>
-    Listado de Proveedores
-    <a routerLink="/add-proveedor" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus"></span> Nuevo Proveedor
-    </a>
-</h1>
-<div class="table-responsive">
-    <table class="table table-hover">
-        <tr>
-            <th>NIT</th>
-            <th>NOMBRE</th>
-            <th>DESCRIPCION</th>
-            <th>OPCIONES</th>
-        </tr>
-        <tr *ngFor="let proveedor of proveedores">
-            <td>{{proveedor.nit}}</td>
-            <td>{{proveedor.nombre}}</td>
-            <td>{{proveedor.descripcion}}</td>
-            <td>
-                <div class="btn-group">
-                    <a class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
-                    <a class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a>
-                </div>
-            </td>
-        </tr>
-    </table>
-</div>
+<select>
+    <option *ngFor="let zona of zonas">
+        {{zona.nombre}}
+    </option>
+</select>
