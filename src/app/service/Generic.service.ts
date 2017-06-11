@@ -30,13 +30,22 @@ export  class  GenericService  {
                         .catch(this.handleError);
         }
 
+        findById(domain: any, nameDomain: String): Promise<Dto>{
+            var urlCreate = this.url + "/" + nameDomain + "/findbyid";
+                var  data = JSON.stringify(domain);
+                return  this.http
+                        .post(urlCreate,  data,  {  headers:  this.headers  })
+                        .toPromise()
+                        .then(response  =>  response.json()  as  Dto)
+                        .catch(this.handleError);
+        }
         /**
          * Crea una nueva antidad del dominio.
-         * @param proveedor entidad del dominio a crear.
+         * @param domain entidad del dominio a crear.
          * @returns la entidad del dominio creada, con el id correspondiente.
          */
         create(domain:  any,  nameDomain: String):  Promise<Dto>  {
-                var urlCreate = this.url + "/" + nameDomain + "/registrar-" + nameDomain;
+                var urlCreate = this.url + "/" + nameDomain + "/add";
                 var  data = JSON.stringify(domain);
                 return  this.http
                         .post(urlCreate,  data,  {  headers:  this.headers  })
@@ -45,6 +54,20 @@ export  class  GenericService  {
                         .catch(this.handleError);
         }
 
+        /**
+         * Crea una nueva antidad del dominio.
+         * @param domain entidad del dominio a crear.
+         * @returns la entidad del dominio creada, con el id correspondiente.
+         */
+        update(domain:  any,  nameDomain: String):  Promise<Dto>  {
+            var urlCreate = this.url + "/" + nameDomain + "/edit";
+            var  data = JSON.stringify(domain);
+            return  this.http
+                    .post(urlCreate,  data,  {  headers:  this.headers  })
+                    .toPromise()
+                    .then(response  =>  response.json()  as  Dto)
+                    .catch(this.handleError);
+        }
         /**
          * Eliminar registra de la base de datos.
          * @param domain, dominio a eliminar.

@@ -1,0 +1,15 @@
+<a href="javascript:;" (click)="goBack()">Atras</a>
+<table border="1">
+    <tr>
+        <th>CODIGO</th><th>NOMBRE COMUN</th><th>NOMBRE CIENTIFICO</th><th>OPERACIONES</th>
+    </tr>
+    <tr *ngFor="let ave of aves">
+        <td> {{ave.codigo}}</td>
+        <td> {{ave.nombreComun}}</td>
+        <td> {{ave.nombreCientifico}}</td>
+        <td>
+            <a href="javascript:;" routerLink="/edit-ave/{{ave.codigo}}">Editar</a>
+            <a href="javascript:;" routerLink="/delete-ave/{{ave.codigo}}">Eliminar</a>
+        </td>
+    </tr>
+</table>

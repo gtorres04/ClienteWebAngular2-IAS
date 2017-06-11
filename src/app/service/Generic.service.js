@@ -33,13 +33,36 @@ var GenericService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    GenericService.prototype.findById = function (domain, nameDomain) {
+        var urlCreate = this.url + "/" + nameDomain + "/findbyid";
+        var data = JSON.stringify(domain);
+        return this.http
+            .post(urlCreate, data, { headers: this.headers })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     /**
      * Crea una nueva antidad del dominio.
-     * @param proveedor entidad del dominio a crear.
+     * @param domain entidad del dominio a crear.
      * @returns la entidad del dominio creada, con el id correspondiente.
      */
     GenericService.prototype.create = function (domain, nameDomain) {
-        var urlCreate = this.url + "/" + nameDomain + "/registrar-" + nameDomain;
+        var urlCreate = this.url + "/" + nameDomain + "/add";
+        var data = JSON.stringify(domain);
+        return this.http
+            .post(urlCreate, data, { headers: this.headers })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Crea una nueva antidad del dominio.
+     * @param domain entidad del dominio a crear.
+     * @returns la entidad del dominio creada, con el id correspondiente.
+     */
+    GenericService.prototype.update = function (domain, nameDomain) {
+        var urlCreate = this.url + "/" + nameDomain + "/edit";
         var data = JSON.stringify(domain);
         return this.http
             .post(urlCreate, data, { headers: this.headers })
