@@ -1,0 +1,33 @@
+<h1>
+    Registre un nuevo proveedor
+</h1>
+<form role="form" (ngSubmit)="registrar()" #proveedorForm="ngForm">
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input class="form-control" name="id" [(ngModel)]="proveedor.id" disabled="disabled" type="text" class="form-control" id="id" placeholder="identificador autogenerado"/>
+    </div>
+    <div class="form-group">
+        <label for="nit">Nit</label>
+        <input #nit="ngModel" required class="form-control" name="nit" [(ngModel)]="proveedor.nit" type="text" class="form-control" id="nit" placeholder="Introduce el nit"/>
+    <div [hidden]="nit.valid || nit.pristine"
+             class="alert alert-danger">
+          Nit es requerido.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input #nombre="ngModel" required class="form-control" name="nombre" [(ngModel)]="proveedor.nombre" type="text" class="form-control" id="nombre" placeholder="Introduce el nombre"/>
+        <div [hidden]="nombre.valid || nombre.pristine"
+             class="alert alert-danger">
+          Nombre es requerido.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <input class="form-control" name="descripcion" [(ngModel)]="proveedor.descripcion" type="text" class="form-control" id="descripcion" placeholder="Introduce una Descripción"/>
+    </div>
+    <a (click)="goBack()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Regresar</a>
+    <button [disabled]="!proveedorForm.form.valid" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+<p class="error" *ngIf="succesMessage">{{succesMessage}}</p>
+</form>
