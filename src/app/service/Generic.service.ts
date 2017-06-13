@@ -22,21 +22,30 @@ export  class  GenericService  {
          * Lista todas las entidades del dominio registrados en la base de datos.
          * @returns arreglo de objetos del dominio registrados en base de datos.
          */
-        listAll(nameDomain: String):  Promise<ListaDto>  {
-                var urlListar = this.url + "/" + nameDomain + "/list";
-                return  this.http.get(urlListar)
-                        .toPromise()
-                        .then(response  =>  response.json()  as  ListaDto)
-                        .catch(this.handleError);
-        }
+        listAll(nameDomain: String):  Promise<ListaDto>  {
+                var urlListar = this.url + "/" + nameDomain + "/list";
+                return  this.http.get(urlListar)
+                        .toPromise()
+                        .then(response  =>  response.json()  as  ListaDto)
+                        .catch(this.handleError);
+        }
 
+        findById(domain: any, nameDomain: String): Promise<Dto>{
+            var urlCreate = this.url + "/" + nameDomain + "/findbyid";
+                var  data = JSON.stringify(domain);
+                return  this.http
+                        .post(urlCreate,  data,  {  headers:  this.headers  })
+                        .toPromise()
+                        .then(response  =>  response.json()  as  Dto)
+                        .catch(this.handleError);
+        }
         /**
          * Crea una nueva antidad del dominio.
-         * @param proveedor entidad del dominio a crear.
+         * @param domain entidad del dominio a crear.
          * @returns la entidad del dominio creada, con el id correspondiente.
          */
         create(domain:  any,  nameDomain: String):  Promise<Dto>  {
-                var urlCreate = this.url + "/" + nameDomain + "/registrar-" + nameDomain;
+                var urlCreate = this.url + "/" + nameDomain + "/add";
                 var  data = JSON.stringify(domain);
                 return  this.http
                         .post(urlCreate,  data,  {  headers:  this.headers  })
@@ -46,12 +55,26 @@ export  class  GenericService  {
         }
 
         /**
+         * Crea una nueva antidad del dominio.
+         * @param domain entidad del dominio a crear.
+         * @returns la entidad del dominio creada, con el id correspondiente.
+         */
+        update(domain:  any,  nameDomain: String):  Promise<Dto>  {
+            var urlCreate = this.url + "/" + nameDomain + "/edit";
+            var  data = JSON.stringify(domain);
+            return  this.http
+                    .post(urlCreate,  data,  {  headers:  this.headers  })
+                    .toPromise()
+                    .then(response  =>  response.json()  as  Dto)
+                    .catch(this.handleError);
+        }
+        /**
          * Eliminar registra de la base de datos.
          * @param domain, dominio a eliminar.
          * @param nameDomain, nombre en cadena del dominio.
          */
         delete(domain:  any,  nameDomain: String): Promise<Dto>{
-            var urlEliminar = this.url + "/" + nameDomain + "/eliminar-" + nameDomain;
+            var urlEliminar = this.url + "/" + nameDomain + "/delete";
                 var  data = JSON.stringify(domain);
                 return  this.http
                         .post(urlEliminar,  data,  {  headers:  this.headers  })

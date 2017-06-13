@@ -1,0 +1,27 @@
+<a href="javascript:;" routerLink="/add-ave">Crear Nueva Ave</a>
+<div>
+    <a href="javascript:;" (click)="filtrar=!filtrar">Filtrar</a>
+    <div [hidden]="filtrar">
+        <label for="nombre">Nombre</label>
+        <input #nombre="ngModel" required class="form-control" name="nombre" [(ngModel)]="patronNombre" type="text" class="form-control" id="nombreCientifico" placeholder="Digite el nombre"/>
+        <label for="listaZonas">Zona</label>
+        <select name="listaZonas" id="listaZonas" (change)="onChange($event.target.value)">
+            <option *ngFor="let zona of zonas" value="{{zona.codigo}}">{{zona.nombre}}</option>
+        </select>
+        <button (click)="listarPorFiltrar()">Filtrar</button>
+    </div>    
+</div>
+<table border="1">
+    <tr>
+        <th>CODIGO</th><th>NOMBRE COMUN</th><th>NOMBRE CIENTIFICO</th><th>OPERACIONES</th>
+    </tr>
+    <tr *ngFor="let ave of aves">
+        <td> {{ave.codigo}}</td>
+        <td> {{ave.nombreComun}}</td>
+        <td> {{ave.nombreCientifico}}</td>
+        <td>
+            <a href="javascript:;" routerLink="/edit-ave/{{ave.codigo}}">Editar</a>
+            <a href="javascript:;" routerLink="/delete-ave/{{ave.codigo}}">Eliminar</a>
+        </td>
+    </tr>
+</table>

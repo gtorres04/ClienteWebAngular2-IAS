@@ -11,7 +11,12 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_routing_module_1 = require("./app.routing.module");
 var consulting_ave_component_1 = require("./component/consulting.ave.component");
+var add_ave_component_1 = require("./component/add.ave.component");
+var edit_ave_component_1 = require("./component/edit.ave.component");
+var delete_ave_component_1 = require("./component/delete.ave.component");
+var list_ave_component_1 = require("./component/list.ave.component");
 var Generic_service_1 = require("./service/Generic.service");
+var Ave_service_1 = require("./service/Ave.service");
 var app_component_1 = require("./app.component");
 var AppModule = (function () {
     function AppModule() {
@@ -29,9 +34,13 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            consulting_ave_component_1.ConsultingAveComponent
+            consulting_ave_component_1.ConsultingAveComponent,
+            add_ave_component_1.AddAveComponent,
+            list_ave_component_1.ListAveComponent,
+            edit_ave_component_1.EditAveComponent,
+            delete_ave_component_1.DeleteAveComponent
         ],
-        providers: [Generic_service_1.GenericService],
+        providers: [Generic_service_1.GenericService, Ave_service_1.AveService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
