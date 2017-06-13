@@ -4,23 +4,15 @@
 <form role="form" (ngSubmit)="registrar()" #aveForm="ngForm">
     <div class="form-group">
         <label for="codigo">Codigo</label>
-        <input #codigo="ngModel" required class="form-control" name="codigo" [(ngModel)]="ave.codigo" type="text" class="form-control" id="codigo" placeholder="Digite el codigo del Ave"/>
+        <input maxlength="3" #codigo="ngModel" required class="form-control" name="codigo" [(ngModel)]="ave.codigo" type="text" class="form-control" id="codigo" placeholder="Digite el codigo del Ave"/>
     </div>
     <div class="form-group">
         <label for="nombreComun">Nombre Común</label>
         <input #nombreComun="ngModel" required class="form-control" name="nombreComun" [(ngModel)]="ave.nombreComun" type="text" class="form-control" id="nombreComun" placeholder="Digite el nombre común del Ave"/>
-    <div [hidden]="nombreComun.valid || nombreComun.pristine"
-             class="alert alert-danger">
-          Nombre común es requerido.
-        </div>
     </div>
     <div class="form-group">
         <label for="nombreCientifico">Nombre Cientifico</label>
         <input #nombreCientifico="ngModel" required class="form-control" name="nombreCientifico" [(ngModel)]="ave.nombreCientifico" type="text" class="form-control" id="nombreCientifico" placeholder="Digite el nombre cientifico del Ave"/>
-        <div [hidden]="nombreCientifico.valid || nombreCientifico.pristine"
-             class="alert alert-danger">
-          Nombre Cientifico es requerido.
-        </div>
     </div>
     <div class="form-group">
         <label for="listaPaises">Seleccione los paises de donde pertenece esta Ave</label>
@@ -38,5 +30,5 @@
     </div>
     <a href="javascript:;" (click)="goBack()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span>Cancelar</a>
     <button [disabled]="!aveForm.form.valid || paisesAdded.length==0" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-    <p *ngIf="message ">{{message}}</p>
+    <p *ngIf="message">{{message}} <a href="javascript:;" (click)="message=undefined">cerrar</a></p>
 </form>

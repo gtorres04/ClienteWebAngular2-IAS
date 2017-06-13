@@ -70,3 +70,18 @@ button:hover{
   border: 2px solid black;
   font-weight: bold;
 }
+button:disabled{
+  height: 25px;
+  background-color:#ccc6c6;
+  color: white;
+  border: 2px solid #ccc6c6;
+  font-weight: bold;
+}
+p{
+  background-color: grey;
+  color: black;
+  font-weight: bold;
+  padding: 20px;
+  width: 300px;
+  border-radius: 4px;
+}
