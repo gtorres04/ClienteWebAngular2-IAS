@@ -12,8 +12,7 @@ import { GenericService } from '../service/Generic.service';
 })
 export class AddAveComponent implements OnInit{
 
-    errorMessage: String = undefined;
-    succesMessage: String = undefined;
+    message: String = undefined;
 
     constructor(private location: Location, private genericService: GenericService) { }
     ave: Ave = { codigo: undefined, nombreComun: undefined, nombreCientifico: undefined, paises: undefined};
@@ -102,10 +101,10 @@ export class AddAveComponent implements OnInit{
      */
     succes(dto: Dto): void {
         if(-1 == dto.codigo){
-            this.errorMessage=dto.descripcion;
+            this.message=dto.descripcion;
         }else{
             this.ave = dto.object as Ave;
-            this.succesMessage = dto.descripcion;
+            this.message = dto.descripcion;
             this.paisesAdded=[];
             this.ave = { codigo: undefined, nombreComun: undefined, nombreCientifico: undefined, paises: undefined};
         }

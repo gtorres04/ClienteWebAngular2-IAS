@@ -13,8 +13,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class EditAveComponent implements OnInit{
 
-    errorMessage: String = undefined;
-    succesMessage: String = undefined;
+    message: String = undefined;
 
     constructor(private location: Location, 
                 private genericService: GenericService, 
@@ -117,10 +116,10 @@ export class EditAveComponent implements OnInit{
      */
     succes(dto: Dto): void {
         if(-1 == dto.codigo){
-            this.errorMessage=dto.descripcion;
+            this.message=dto.descripcion;
         }else{
             this.ave = dto.object as Ave;
-            this.succesMessage = dto.descripcion;
+            this.message = dto.descripcion;
             this.paisesAdded = this.ave.paises;
         }
     }

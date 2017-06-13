@@ -15,8 +15,7 @@ var AddAveComponent = (function () {
     function AddAveComponent(location, genericService) {
         this.location = location;
         this.genericService = genericService;
-        this.errorMessage = undefined;
-        this.succesMessage = undefined;
+        this.message = undefined;
         this.ave = { codigo: undefined, nombreComun: undefined, nombreCientifico: undefined, paises: undefined };
         this.paisesAdded = [];
     }
@@ -101,11 +100,11 @@ var AddAveComponent = (function () {
      */
     AddAveComponent.prototype.succes = function (dto) {
         if (-1 == dto.codigo) {
-            this.errorMessage = dto.descripcion;
+            this.message = dto.descripcion;
         }
         else {
             this.ave = dto.object;
-            this.succesMessage = dto.descripcion;
+            this.message = dto.descripcion;
             this.paisesAdded = [];
             this.ave = { codigo: undefined, nombreComun: undefined, nombreCientifico: undefined, paises: undefined };
         }

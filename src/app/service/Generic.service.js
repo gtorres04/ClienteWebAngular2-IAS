@@ -28,7 +28,7 @@ var GenericService = (function () {
      */
     GenericService.prototype.listAll = function (nameDomain) {
         var urlListar = this.url + "/" + nameDomain + "/list";
-        return this.http.get(urlListar)
+        return this.http.get(urlListar, { headers: this.headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);

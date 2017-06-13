@@ -22,6 +22,7 @@ export class ListAveComponent implements OnInit {
   mensajeOperacionEliminacion: String = undefined;
   filtrar:boolean = true;
   patronNombre: String = undefined;
+  codigoZona:String = "ADN";
 
   ngOnInit(): void {
     this.getAves();
@@ -37,7 +38,7 @@ export class ListAveComponent implements OnInit {
    * se otiene el listado de las aves registrados en base de datos.
    */
   getZonas(): void {
-    this.genericService.listAll("zona").then(listaDto => this.zonas = listaDto.list as Zona[]);
+    this.genericService.listAll("zona").then(listaDto => {this.zonas = listaDto.list as Zona[];this.codigoZona = this.zonas[0].codigo;});
   }
   /**
    * Regresamos a la vista (route) anterior.
@@ -45,12 +46,20 @@ export class ListAveComponent implements OnInit {
   goBack(): void {
       this.location.back();
   }
-
+  /**
+   * 
+   */
+  onChange(selected:String):void{
+    this.codigoZona = selected;
+  }
+  /**
+   * consulta las aves por nombre y Zona
+   */
   listarPorFiltrar(): void{
     let filtroAve:FiltroAve=new FiltroAve();
     filtroAve.nombre = this.patronNombre;
     filtroAve.zonaDto = new Zona();
-    filtroAve.zonaDto.codigo = "";
+    filtroAve.zonaDto.codigo = this.codigoZona;
     this.aveService.findByNameAndZone(filtroAve).then(listaDto => this.aves = listaDto.list as Ave[]);
   }
   

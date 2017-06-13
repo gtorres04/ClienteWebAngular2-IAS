@@ -27,7 +27,7 @@
         <select name="listaPaises" id="listaPaises" (change)="onChange($event.target.value)">
             <option *ngFor="let pais of paises" value="{{pais.codigo}}" [hidden]="isPaisAdded(pais)">{{pais.nombre}}</option>
         </select>
-        <table border="1" [hidden]="paisesAdded.length == 0">
+        <table [hidden]="paisesAdded.length == 0">
             <tr>
                 <th>Paises Agregados</th><th>Opciones</th>
             </tr>
@@ -36,8 +36,7 @@
             </tr>
         </table>
     </div>
-    <a (click)="goBack()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Regresar</a>
+    <a href="javascript:;" (click)="goBack()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Cancelar</a>
     <button [disabled]="!aveForm.form.valid || paisesAdded.length==0" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Cambios</button>
-<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
-<p class="error" *ngIf="succesMessage">{{succesMessage}}</p>
+    <p *ngIf="message">{{message}}</p>
 </form>

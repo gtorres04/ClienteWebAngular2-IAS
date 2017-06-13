@@ -19,8 +19,7 @@ var EditAveComponent = (function () {
         this.genericService = genericService;
         this.route = route;
         this.router = router;
-        this.errorMessage = undefined;
-        this.succesMessage = undefined;
+        this.message = undefined;
         this.ave = { codigo: undefined, nombreComun: undefined, nombreCientifico: undefined, paises: undefined };
         this.paisesAdded = [];
         this.edited = false;
@@ -115,11 +114,11 @@ var EditAveComponent = (function () {
      */
     EditAveComponent.prototype.succes = function (dto) {
         if (-1 == dto.codigo) {
-            this.errorMessage = dto.descripcion;
+            this.message = dto.descripcion;
         }
         else {
             this.ave = dto.object;
-            this.succesMessage = dto.descripcion;
+            this.message = dto.descripcion;
             this.paisesAdded = this.ave.paises;
         }
     };

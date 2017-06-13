@@ -10,7 +10,6 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_routing_module_1 = require("./app.routing.module");
-var consulting_ave_component_1 = require("./component/consulting.ave.component");
 var add_ave_component_1 = require("./component/add.ave.component");
 var edit_ave_component_1 = require("./component/edit.ave.component");
 var delete_ave_component_1 = require("./component/delete.ave.component");
@@ -34,7 +33,6 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            consulting_ave_component_1.ConsultingAveComponent,
             add_ave_component_1.AddAveComponent,
             list_ave_component_1.ListAveComponent,
             edit_ave_component_1.EditAveComponent,

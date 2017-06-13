@@ -24,7 +24,7 @@ export  class  GenericService  {
          */
         listAll(nameDomain: String):  Promise<ListaDto>  {
                 var urlListar = this.url + "/" + nameDomain + "/list";
-                return  this.http.get(urlListar)
+                return  this.http.get(urlListar,{headers: this.headers})
                         .toPromise()
                         .then(response  =>  response.json()  as  ListaDto)
                         .catch(this.handleError);

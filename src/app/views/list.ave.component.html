@@ -1,7 +1,6 @@
 <a href="javascript:;" routerLink="/add-ave">Crear Nueva Ave</a>
 <div>
-    <a href="javascript:;" (click)="filtrar=!filtrar">Filtrar</a>
-    <div [hidden]="filtrar">
+    <div>
         <label for="nombre">Nombre</label>
         <input #nombre="ngModel" required class="form-control" name="nombre" [(ngModel)]="patronNombre" type="text" class="form-control" id="nombreCientifico" placeholder="Digite el nombre"/>
         <label for="listaZonas">Zona</label>
@@ -11,7 +10,7 @@
         <button (click)="listarPorFiltrar()">Filtrar</button>
     </div>    
 </div>
-<table border="1">
+<table border="0">
     <tr>
         <th>CODIGO</th><th>NOMBRE COMUN</th><th>NOMBRE CIENTIFICO</th><th>OPERACIONES</th>
     </tr>

@@ -22,6 +22,7 @@ var ListAveComponent = (function () {
         this.mensajeOperacionEliminacion = undefined;
         this.filtrar = true;
         this.patronNombre = undefined;
+        this.codigoZona = "ADN";
     }
     ListAveComponent.prototype.ngOnInit = function () {
         this.getAves();
@@ -39,7 +40,7 @@ var ListAveComponent = (function () {
      */
     ListAveComponent.prototype.getZonas = function () {
         var _this = this;
-        this.genericService.listAll("zona").then(function (listaDto) { return _this.zonas = listaDto.list; });
+        this.genericService.listAll("zona").then(function (listaDto) { _this.zonas = listaDto.list; _this.codigoZona = _this.zonas[0].codigo; });
     };
     /**
      * Regresamos a la vista (route) anterior.
@@ -47,12 +48,21 @@ var ListAveComponent = (function () {
     ListAveComponent.prototype.goBack = function () {
         this.location.back();
     };
+    /**
+     *
+     */
+    ListAveComponent.prototype.onChange = function (selected) {
+        this.codigoZona = selected;
+    };
+    /**
+     * consulta las aves por nombre y Zona
+     */
     ListAveComponent.prototype.listarPorFiltrar = function () {
         var _this = this;
         var filtroAve = new FiltroAve_1.FiltroAve();
         filtroAve.nombre = this.patronNombre;
         filtroAve.zonaDto = new Zona_1.Zona();
-        filtroAve.zonaDto.codigo = "";
+        filtroAve.zonaDto.codigo = this.codigoZona;
         this.aveService.findByNameAndZone(filtroAve).then(function (listaDto) { return _this.aves = listaDto.list; });
     };
     return ListAveComponent;

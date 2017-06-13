@@ -1,43 +1,27 @@
 <h1>
     Confirmar eliminación del Ave
 </h1>
-<form role="form" (ngSubmit)="eliminar()" #aveForm="ngForm">
     <div class="form-group">
-        <label for="codigo">Codigo</label>
-        <input #codigo="ngModel" required class="form-control" name="codigo" [(ngModel)]="ave.codigo" type="text" class="form-control" id="codigo" placeholder="Digite el codigo del Ave"/>
+        <b>Codigo:</b>
+        <span>{{ave.codigo}}</span>
     </div>
     <div class="form-group">
-        <label for="nombreComun">Nombre Común</label>
-        <input #nombreComun="ngModel" required class="form-control" name="nombreComun" [(ngModel)]="ave.nombreComun" type="text" class="form-control" id="nombreComun" placeholder="Digite el nombre común del Ave"/>
-    <div [hidden]="nombreComun.valid || nombreComun.pristine"
-             class="alert alert-danger">
-          Nombre común es requerido.
-        </div>
+        <b>Nombre Común:</b>
+        <span>{{ave.nombreComun}}</span>
     </div>
     <div class="form-group">
-        <label for="nombreCientifico">Nombre Cientifico</label>
-        <input #nombreCientifico="ngModel" required class="form-control" name="nombreCientifico" [(ngModel)]="ave.nombreCientifico" type="text" class="form-control" id="nombreCientifico" placeholder="Digite el nombre cientifico del Ave"/>
-        <div [hidden]="nombreCientifico.valid || nombreCientifico.pristine"
-             class="alert alert-danger">
-          Nombre Cientifico es requerido.
-        </div>
+        <b>Nombre Cientifico:</b>
+        <span>{{ave.nombreCientifico}}</span>
     </div>
     <div class="form-group">
-        <label for="listaPaises">Seleccione los paises de donde pertenece esta Ave</label>
-        <select name="listaPaises" id="listaPaises" (change)="onChange($event.target.value)">
-            <option *ngFor="let pais of paises" value="{{pais.codigo}}" [hidden]="isPaisAdded(pais)">{{pais.nombre}}</option>
-        </select>
-        <table border="1" [hidden]="paisesAdded.length==0">
+        <table [hidden]="paisesAdded.length==0">
             <tr>
-                <th>Paises Agregados</th><th>Opciones</th>
+                <th>Paises Agregados</th>
             </tr>
             <tr *ngFor="let paisAdded of paisesAdded">
-                <td>{{paisAdded.nombre}}</td><td><a href="javascript:;" (click)="deletePais(paisAdded)">Eliminar</a></td>
+                <td>{{paisAdded.nombre}}</td>
             </tr>
         </table>
     </div>
-    <a (click)="goBack()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Regresar</a>
-    <button [disabled]="!aveForm.form.valid || paisesAdded.length==0" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
-<p class="error" *ngIf="succesMessage">{{succesMessage}}</p>
-</form>
+    <a href="javascript:;" (click)="goBack()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Cancelar</a>
+    <button (click)="eliminar()"><span class="glyphicon glyphicon-floppy-disk"></span> Eliminar</button>
